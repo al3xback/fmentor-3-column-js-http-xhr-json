@@ -1,16 +1,31 @@
 import { sendHttpRequest } from './util.js';
 
+const cardsWrapperEl = document.querySelector('.cards-wrapper');
 const cardsEl = document.querySelector('.cards');
 const cardTemplate = document.getElementById('card-template');
 const loadingEl = document.querySelector('.loading');
 
 const URL =
-	'https://gist.githubusercontent.com/al3xback/1818bcbc392fcf68d6837ac6a18692a7/raw/bb1d782ac93a4ce921536bba248431eddf462378/3-column-data.json';
+	'https://gist.githubusercontent.com/al3xback/1818bcbc392fcf68d6837ac6a18692a7/raw/4fa57c98f6027cd3365a0bde3e111366cef62de1/3-column-data.json';
+
+const removeLoading = () => {
+	loadingEl.parentElement.removeChild(loadingEl);
+};
+
+const handleError = (msg) => {
+	removeLoading();
+
+	const errorEl = document.createElement('p');
+	errorEl.className = 'error';
+	errorEl.textContent = msg;
+
+	cardsWrapperEl.prepend(errorEl);
+};
 
 const renderCardsContent = (data) => {
 	const carsData = JSON.parse(data);
 
-	loadingEl.parentElement.removeChild(loadingEl);
+	removeLoading();
 
 	for (const car in carsData) {
 		carsData[car].name = car;
@@ -36,4 +51,4 @@ const renderCardsContent = (data) => {
 	}
 };
 
-sendHttpRequest('GET', URL, renderCardsContent);
+sendHttpRequest('GET', URL, renderCardsContent, handleError);
