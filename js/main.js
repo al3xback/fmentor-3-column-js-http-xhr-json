@@ -1,12 +1,12 @@
 import { sendHttpRequest } from './util.js';
 
+const URL =
+	'https://gist.githubusercontent.com/al3xback/1818bcbc392fcf68d6837ac6a18692a7/raw/4fa57c98f6027cd3365a0bde3e111366cef62de1/3-column-data.json';
+
 const cardsWrapperEl = document.querySelector('.cards-wrapper');
 const cardsEl = document.querySelector('.cards');
 const cardTemplate = document.getElementById('card-template');
 const loadingEl = document.querySelector('.loading');
-
-const URL =
-	'https://gist.githubusercontent.com/al3xback/1818bcbc392fcf68d6837ac6a18692a7/raw/4fa57c98f6027cd3365a0bde3e111366cef62de1/3-column-data.json';
 
 const removeLoading = () => {
 	loadingEl.parentElement.removeChild(loadingEl);
@@ -38,14 +38,14 @@ const renderCardsContent = (data) => {
 		const cardEl = cardTemplateNode.querySelector('.card');
 		cardEl.classList.add('card--' + name);
 
-		const cardImageEl = cardEl.querySelector('.card__img');
-		cardImageEl.src = './images/icons/' + image;
-
 		const cardTitleEl = cardEl.querySelector('.card__title');
 		cardTitleEl.textContent = name;
 
 		const cardDescEl = cardEl.querySelector('.card__desc');
 		cardDescEl.textContent = description;
+
+		const cardImageEl = cardEl.querySelector('.card__img');
+		cardImageEl.src = './images/icons/' + image;
 
 		cardsEl.appendChild(cardTemplateNode);
 	}
