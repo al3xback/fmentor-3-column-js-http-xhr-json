@@ -1,7 +1,7 @@
 import { sendHttpRequest } from './util.js';
 
 const URL =
-	'https://gist.githubusercontent.com/al3xback/1818bcbc392fcf68d6837ac6a18692a7/raw/4fa57c98f6027cd3365a0bde3e111366cef62de1/3-column-data.json';
+	'https://gist.githubusercontent.com/al3xback/1818bcbc392fcf68d6837ac6a18692a7/raw/7594a177d07011a1aa0bccb00af3def97f53a6a8/3-column-data.json';
 
 const cardsWrapperEl = document.querySelector('.cards-wrapper');
 const cardsEl = document.querySelector('.cards');
@@ -29,7 +29,7 @@ const renderCardsContent = (data) => {
 
 	for (const car in carsData) {
 		carsData[car].name = car;
-		const { name, image, description } = carsData[car];
+		const { name, description, image } = carsData[car];
 
 		const cardTemplateNode = document.importNode(
 			cardTemplate.content,
